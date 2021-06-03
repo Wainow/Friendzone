@@ -1,2 +1,2 @@
 # Friendzone
-Just list of friend. No more.
+Just list of friends. No more.
