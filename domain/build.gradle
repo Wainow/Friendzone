@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'kotlin'
+    id('org.jetbrains.kotlin.plugin.serialization') version "$kotlin_version"
 }
 
 java {
@@ -10,6 +11,8 @@ java {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
 }
 compileKotlin {
     kotlinOptions {
