@@ -1,4 +1,4 @@
-package com.wainow.friendzone.ui.main
+package com.wainow.friendzone.view.fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -18,28 +16,26 @@ import com.wainow.data.api.ApiHelper
 import com.wainow.data.api.RetrofitBuilder
 import com.wainow.data.repository.UserRepositoryImpl
 import com.wainow.domain.entity.User
-import com.wainow.domain.interactor.UserInteractor
-import com.wainow.domain.interactor.UserInteractorImpl
-import com.wainow.domain.repository.UserRepository
 import com.wainow.domain.utils.Status
 import com.wainow.friendzone.R
-import com.wainow.friendzone.ui.base.ViewModelFactory
+import com.wainow.friendzone.view.adapter.UserListAdapter
+import com.wainow.friendzone.view.base.VMFactory
 
-class MainFragment : Fragment() {
+class UserListFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = UserListFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: UserListViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MainAdapter
+    private lateinit var adapter: UserListAdapter
     private lateinit var layout: ConstraintLayout
     private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(R.layout.main_fragment, container, false)
+        val view = inflater.inflate(R.layout.user_list_fragment, container, false)
         initView(view)
         setupRecycler(recyclerView)
         return view
@@ -60,19 +56,19 @@ class MainFragment : Fragment() {
 
     private fun setupRecycler(recyclerView: RecyclerView){
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = MainAdapter(listOf())
+        adapter = UserListAdapter(listOf())
         recyclerView.adapter = adapter
     }
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
                 this,
-                ViewModelFactory(
+                VMFactory(
                         UserRepositoryImpl(
                                 ApiHelper(RetrofitBuilder.apiService)
                         )
                 )
-        ).get(MainViewModel::class.java)
+        ).get(UserListViewModel::class.java)
     }
 
     private fun setupObservers() {

@@ -1,7 +1,11 @@
 package com.wainow.domain.entity
 
-inline class Friend (val id: Long)
+import kotlinx.serialization.Serializable
 
+@Serializable
+data class Friend (val id: Long)
+
+@Serializable
 data class User (
         val id: Long,
         val guid: String,
