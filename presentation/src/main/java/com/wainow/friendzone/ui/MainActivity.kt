@@ -1,7 +1,8 @@
-package com.wainow.friendzone
+package com.wainow.friendzone.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wainow.friendzone.R
 import com.wainow.friendzone.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
