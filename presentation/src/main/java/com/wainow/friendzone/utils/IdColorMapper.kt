@@ -2,7 +2,7 @@ package com.wainow.friendzone.utils
 
 import kotlin.math.pow
 
-class IdToColorMapper {
+class IdColorMapper {
     companion object{
         fun map(id: Int): String {
             var id = id

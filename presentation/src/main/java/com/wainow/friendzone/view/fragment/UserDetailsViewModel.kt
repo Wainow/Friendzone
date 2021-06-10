@@ -1,6 +1,5 @@
 package com.wainow.friendzone.view.fragment
 
-import android.os.Bundle
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.wainow.domain.entity.User
