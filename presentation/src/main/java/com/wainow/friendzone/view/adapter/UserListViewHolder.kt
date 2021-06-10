@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.mikhaellopez.circularimageview.CircularImageView
 import com.wainow.domain.entity.User
@@ -29,6 +30,7 @@ class UserListViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private val emailView: TextView = view.findViewById(R.id.email_tv)
     private val imageView: CircularImageView = view.findViewById(R.id.avatar_iv)
     private val isActiveView: CircularImageView = view.findViewById(R.id.active_iv)
+    private val userView: CardView = view.findViewById(R.id.user_item_cv)
     fun bindTo(
         user: User,
         index: Int
@@ -60,14 +62,19 @@ class UserListViewHolder(view: View): RecyclerView.ViewHolder(view) {
     }
 
     private fun openContactDetails(user: User){
-        val manager = (itemView.context as AppCompatActivity).supportFragmentManager
-        val fragmentTag = FragmentTagHelper.getFragmentTag(manager)
-        manager
-            .beginTransaction()
-            .setReorderingAllowed(true)
-            .replace(R.id.container, UserDetailsFragment.newInstance(user), fragmentTag)
-            .addToBackStack(null)
-            .commit()
-        Log.d("DebugLogs", "Added fragment with tag: $fragmentTag")
+        if(user.isActive) {
+            val activity = (itemView.context as AppCompatActivity)
+            val manager = activity.supportFragmentManager
+            val fragmentTag = FragmentTagHelper.getFragmentTag(manager)
+            activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            activity.supportActionBar?.setDisplayShowHomeEnabled(true)
+            manager
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.container, UserDetailsFragment.newInstance(user), fragmentTag)
+                    .addToBackStack(null)
+                    .commit()
+            Log.d("DebugLogs", "Added fragment with tag: $fragmentTag")
+        }
     }
 }

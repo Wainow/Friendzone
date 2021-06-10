@@ -15,18 +15,21 @@ import com.google.android.material.snackbar.Snackbar
 import com.wainow.data.api.ApiHelper
 import com.wainow.data.api.RetrofitBuilder
 import com.wainow.data.repository.UserRepositoryImpl
+import com.wainow.domain.entity.Friend
 import com.wainow.domain.entity.User
 import com.wainow.domain.utils.Status
 import com.wainow.friendzone.R
 import com.wainow.friendzone.view.adapter.UserListAdapter
 import com.wainow.friendzone.view.base.VMFactory
 
-class UserListFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = UserListFragment()
+class UserListFragment() : Fragment() {
+    constructor(list: List<Friend>?): this(){
+        friendList = list
     }
-
+    companion object {
+        fun newInstance(list: List<Friend>? = null) = UserListFragment(list)
+    }
+    private var friendList: List<Friend>? = null
     private lateinit var viewModel: UserListViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: UserListAdapter
@@ -98,8 +101,15 @@ class UserListFragment : Fragment() {
     }
 
     private fun retrieveList(users: List<User>) {
+        var filteredUsers = users
+        if(friendList != null){
+            filteredUsers = users.filter { user ->
+                friendList!!.map { friend -> friend.id.toInt() }
+                        .contains(user.id.toInt())
+            }
+        }
         adapter.apply {
-            addUsers(users)
+            addUsers(filteredUsers)
             notifyDataSetChanged()
         }
     }
