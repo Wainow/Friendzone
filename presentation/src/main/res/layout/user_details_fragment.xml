@@ -1,57 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.UserDetailsFragment">
+    tools:context=".view.fragment.UserDetailsFragment"
+    android:background="@color/white">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/contact_info_cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/user_details_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Contact Information"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/eye_iv"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginTop="11dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_color="@color/green"
+                app:civ_border_width="10dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="@color/black"
+                app:civ_shadow_gravity="top"
+                app:civ_shadow_radius="1dp"
+                app:layout_constraintStart_toEndOf="@+id/user_details_tv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/emoji_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="@string/apple"
+                app:layout_constraintStart_toEndOf="@+id/eye_iv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/age_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_age"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_details_tv" />
+            <TextView
+                android:id="@+id/age_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="19 Years"
+                app:layout_constraintStart_toEndOf="@+id/age_iv"
+                app:layout_constraintTop_toTopOf="@+id/age_iv" />
+
+            <ImageView
+                android:id="@+id/company_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_work"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age_tv" />
+            <TextView
+                android:id="@+id/company_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="Samara University"
+                app:layout_constraintStart_toEndOf="@+id/company_iv"
+                app:layout_constraintTop_toTopOf="@+id/company_iv" />
+
+            <ImageView
+                android:id="@+id/email_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/company_tv" />
+            <TextView
+                android:id="@+id/email_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="skylla00@mail.ru"
+                android:padding="7dp"
+                app:layout_constraintStart_toEndOf="@+id/email_iv"
+                app:layout_constraintTop_toTopOf="@+id/email_iv" />
+
+            <ImageView
+                android:id="@+id/phone_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email_tv" />
+            <TextView
+                android:id="@+id/phone_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+79279042664"
+                android:padding="7dp"
+                app:layout_constraintStart_toEndOf="@+id/phone_iv"
+                app:layout_constraintTop_toTopOf="@+id/phone_iv" />
+
+            <ImageView
+                android:id="@+id/address_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_city"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/phone_tv" />
+            <TextView
+                android:id="@+id/address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Samara"
+                android:padding="7dp"
+                app:layout_constraintStart_toEndOf="@+id/address_iv"
+                app:layout_constraintTop_toTopOf="@+id/address_iv" />
+
+            <ImageView
+                android:id="@+id/about_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_about"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_tv" />
+            <TextView
+                android:id="@+id/about_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:paddingEnd="50dp"
+                android:text="I love Paris"
+                app:layout_constraintStart_toEndOf="@+id/about_iv"
+                app:layout_constraintTop_toTopOf="@+id/about_iv" />
+
+            <ImageView
+                android:id="@+id/registered_date_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_cake"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/about_tv" />
+            <TextView
+                android:id="@+id/registered_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:paddingEnd="50dp"
+                android:text="20:00 01.01.01"
+                app:layout_constraintStart_toEndOf="@+id/registered_date_iv"
+                app:layout_constraintTop_toTopOf="@+id/registered_date_iv" />
+
+            <ImageView
+                android:id="@+id/coordinates_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:src="@drawable/ic_coordinates"
+                app:layout_constraintStart_toEndOf="@+id/registered_date_tv"
+                app:layout_constraintTop_toTopOf="@+id/registered_date_tv" />
+
+            <TextView
+                android:id="@+id/coordinates_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:paddingEnd="50dp"
+                android:text="0.0:0.0"
+                app:layout_constraintStart_toEndOf="@+id/coordinates_iv"
+                app:layout_constraintTop_toTopOf="@+id/coordinates_iv" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
     <TextView
-        android:id="@+id/name_tv"
+        android:id="@+id/user_friends_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alexey Cherepanov"
+        android:padding="5dp"
+        android:text="Contact friends"
+        android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/age_tv"
-        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/contact_info_cv" />
+    <FrameLayout
+        android:id="@+id/user_friends_container"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="19 Years"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_tv" />
-    <TextView
-        android:id="@+id/company_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Samara University"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age_tv" />
-    <TextView
-        android:id="@+id/email_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="skylla00@mail.ru"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company_tv" />
-    <TextView
-        android:id="@+id/phone_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+79279042664"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_tv" />
-    <TextView
-        android:id="@+id/address_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Samara"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_tv" />
-    <TextView
-        android:id="@+id/about_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I love Paris"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/user_friends_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>
