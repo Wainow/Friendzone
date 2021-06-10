@@ -1,6 +1,7 @@
 package com.wainow.friendzone.view.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.wainow.friendzone.R
@@ -25,8 +26,6 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
     }
     private fun setupToolbar(){
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.title = USER_LIST_TITLE
         toolbar.setNavigationOnClickListener { onBackPressed() }
     }
@@ -36,6 +35,17 @@ class MainActivity : AppCompatActivity() {
             .commitNow()
     }
     override fun onBackPressed() {
+        Log.d("DebugLogs", "backEntryCount: ${supportFragmentManager.backStackEntryCount}")
         supportFragmentManager.popBackStack()
+        if(supportFragmentManager.backStackEntryCount == 1){
+            with(supportActionBar){
+                if(this != null){
+                    title = USER_LIST_TITLE
+                    setDisplayHomeAsUpEnabled(false)
+                    setDisplayShowHomeEnabled(false)
+                }
+            }
+        } else if(supportFragmentManager.backStackEntryCount == 0)
+            super.onBackPressed()
     }
 }

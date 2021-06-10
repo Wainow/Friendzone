@@ -17,6 +17,7 @@ import com.mikhaellopez.circularimageview.CircularImageView
 import com.wainow.data.api.ApiHelper
 import com.wainow.data.api.RetrofitBuilder
 import com.wainow.data.repository.UserRepositoryImpl
+import com.wainow.domain.entity.Friend
 import com.wainow.domain.entity.User
 import com.wainow.friendzone.R
 import com.wainow.friendzone.utils.FragementViewHelper
@@ -85,7 +86,7 @@ class UserDetailsFragment() : Fragment() {
         setupTextView(user)
         FragementViewHelper.setupEyeColorView(user, eyeView)
         FragementViewHelper.setupEmojiView(user, emojiView)
-        setupFriendListView()
+        setupFriendListView(user.friends)
     }
     @SuppressLint("SetTextI18n")
     private fun setupTextView(user: User){
@@ -101,14 +102,14 @@ class UserDetailsFragment() : Fragment() {
             coordinatesView.text = "$longitude:$latitude"
         }
     }
-    private fun setupFriendListView(){
+    private fun setupFriendListView(friends: List<Friend>){
         activity
                 ?.supportFragmentManager
                 ?.fragments?.get(0)
                 ?.childFragmentManager
                 ?.beginTransaction()
                 ?.setReorderingAllowed(true)
-                ?.replace(R.id.user_friends_container, UserListFragment.newInstance())
+                ?.replace(R.id.user_friends_container, UserListFragment.newInstance(friends))
                 ?.commit()
     }
 }
