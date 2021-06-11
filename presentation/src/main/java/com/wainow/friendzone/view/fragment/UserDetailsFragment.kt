@@ -119,14 +119,13 @@ class UserDetailsFragment() : Fragment() {
         }
     }
     private fun setupFriendListView(friends: List<Friend>){
-        activity
-                ?.supportFragmentManager
-                ?.fragments?.get(0)
-                ?.childFragmentManager
-                ?.beginTransaction()
-                ?.setReorderingAllowed(true)
-                ?.replace(R.id.user_friends_container, UserListFragment.newInstance(friends))
-                ?.commit()
+        requireActivity().supportFragmentManager
+            .fragments[0]
+                .childFragmentManager
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.user_friends_container, UserListFragment.newInstance(friends))
+                .commit()
     }
     private fun setupViewClickListeners(
             user: User,
