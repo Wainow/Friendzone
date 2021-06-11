@@ -3,4 +3,5 @@
     <string name="apple">&#x1F34E;</string>
     <string name="banana">&#x1F34C;</string>
     <string name="strawberry">&#x1F353;</string>
+    <string name="implicit_intent_error">No apps can perform this action</string>
 </resources>
