@@ -52,6 +52,7 @@ class UserDetailsFragment() : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.user_details_fragment, container, false)
         initView(view)
+        setupToolbarArrows()
         return view
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -72,6 +73,14 @@ class UserDetailsFragment() : Fragment() {
         emailImageView = view.findViewById(R.id.email_iv)
         phoneImageView = view.findViewById(R.id.phone_iv)
         coordinatesImageView = view.findViewById(R.id.coordinates_iv)
+    }
+    private fun setupToolbarArrows(){
+        with(activity as MainActivity){
+            supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setDisplayShowHomeEnabled(true)
+            }
+        }
     }
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
