@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.wainow.friendzone.R
 import com.wainow.friendzone.view.fragment.UserListFragment
+import io.realm.Realm
 
 class MainActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_list_activity)
+        Realm.init(this);
         initView()
         setSupportActionBar(toolbar)
         setupToolbar()

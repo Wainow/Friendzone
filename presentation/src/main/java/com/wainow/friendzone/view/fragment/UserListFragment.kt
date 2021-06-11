@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.wainow.data.api.ApiHelper
 import com.wainow.data.api.RetrofitBuilder
@@ -21,8 +22,9 @@ import com.wainow.domain.utils.Status
 import com.wainow.friendzone.R
 import com.wainow.friendzone.view.adapter.UserListAdapter
 import com.wainow.friendzone.view.base.VMFactory
+import io.realm.Realm
 
-class UserListFragment() : Fragment() {
+class UserListFragment() : Fragment(){
     constructor(list: List<Friend>?): this(){
         friendList = list
     }
@@ -99,7 +101,6 @@ class UserListFragment() : Fragment() {
             }
         })
     }
-
     private fun retrieveList(users: List<User>) {
         var filteredUsers = users
         if(friendList != null){
@@ -113,5 +114,4 @@ class UserListFragment() : Fragment() {
             notifyDataSetChanged()
         }
     }
-
 }
