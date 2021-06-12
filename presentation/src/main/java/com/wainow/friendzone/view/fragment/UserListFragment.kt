@@ -20,6 +20,7 @@ import com.wainow.domain.entity.Friend
 import com.wainow.domain.entity.User
 import com.wainow.domain.utils.Status
 import com.wainow.friendzone.R
+import com.wainow.friendzone.view.activity.MainActivity
 import com.wainow.friendzone.view.adapter.UserListAdapter
 import com.wainow.friendzone.view.base.VMFactory
 import io.realm.Realm
@@ -37,7 +38,6 @@ class UserListFragment() : Fragment(){
     private lateinit var adapter: UserListAdapter
     private lateinit var layout: ConstraintLayout
     private lateinit var progressBar: ProgressBar
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.user_list_fragment, container, false)
@@ -45,26 +45,22 @@ class UserListFragment() : Fragment(){
         setupRecycler(recyclerView)
         return view
     }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViewModel()
         setupObservers()
         viewModel.getUsers()
     }
-
     private fun initView(view: View){
         recyclerView = view.findViewById(R.id.user_list_rv)
         layout = view.findViewById(R.id.main)
         progressBar = view.findViewById(R.id.loading_pb)
     }
-
     private fun setupRecycler(recyclerView: RecyclerView){
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = UserListAdapter(listOf())
         recyclerView.adapter = adapter
     }
-
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
                 this,
@@ -75,31 +71,37 @@ class UserListFragment() : Fragment(){
                 )
         ).get(UserListViewModel::class.java)
     }
-
-    private fun setupObservers() {
+    fun setupObservers() {
         viewModel.getUsers().observe(viewLifecycleOwner, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        recyclerView.visibility = View.VISIBLE
-                        progressBar.visibility = View.GONE
+                        showList(true)
                         resource.data?.let { users -> retrieveList(users) }
                     }
                     Status.ERROR -> {
-                        recyclerView.visibility = View.VISIBLE
-                        progressBar.visibility = View.GONE
+                        showList(true)
                         it.message?.let { text ->
                             Snackbar.make(layout, text, Snackbar.LENGTH_LONG).show()
                             Log.d("DebugLogs", text)
                         }
                     }
                     Status.LOADING -> {
-                        progressBar.visibility = View.VISIBLE
-                        recyclerView.visibility = View.GONE
+                        showList(false)
                     }
                 }
             }
         })
+    }
+    private fun showList(isShow: Boolean){
+        if(isShow){
+            recyclerView.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+            (activity as MainActivity).swipeLayout.isRefreshing = false
+        } else{
+            recyclerView.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+        }
     }
     private fun retrieveList(users: List<User>) {
         var filteredUsers = users
