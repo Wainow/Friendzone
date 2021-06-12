@@ -7,6 +7,8 @@ import com.wainow.domain.entity.User
 import com.wainow.domain.interactor.UserInteractor
 import com.wainow.domain.utils.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class UserListViewModel(private val userInteractor: UserInteractor) : ViewModel() {
 
@@ -24,7 +26,7 @@ class UserListViewModel(private val userInteractor: UserInteractor) : ViewModel(
         }
     }
     fun updateUsers(){
-        userInteractor.deleteUsers()
+        runBlocking { withContext(Dispatchers.IO) { userInteractor.deleteUsers() } }
         getUsers()
     }
 }
