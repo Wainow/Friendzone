@@ -4,7 +4,7 @@ import com.wainow.domain.entity.User
 
 interface UserInteractor {
     suspend fun getUsers(): List<User>
-    fun saveUsers(users: List<User>)
-    fun getLocalUsers(): List<User>
-    fun deleteUsers()
+    suspend fun saveUsers(users: List<User>)
+    suspend fun getLocalUsers(): List<User>
+    suspend fun deleteUsers()
 }
